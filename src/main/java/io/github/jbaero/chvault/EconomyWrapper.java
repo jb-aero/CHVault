@@ -1,17 +1,25 @@
-package com.zeoldcraft.chvault;
+package io.github.jbaero.chvault;
 
+import com.laytonsmith.abstraction.MCOfflinePlayer;
+import com.laytonsmith.abstraction.bukkit.BukkitMCOfflinePlayer;
 import net.milkbowl.vault.economy.AbstractEconomy;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
+import org.bukkit.OfflinePlayer;
 
 import java.util.List;
 
+// TODO this is no longer impl independent
 public class EconomyWrapper extends AbstractEconomy {
 
 	Economy e;
 
 	public EconomyWrapper(Economy econ) {
 		e = econ;
+	}
+
+	OfflinePlayer getPlayer(MCOfflinePlayer off) {
+		return (OfflinePlayer) ((BukkitMCOfflinePlayer) off).getHandle();
 	}
 
 	@Override
@@ -60,8 +68,13 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	@Override
+	@Deprecated
 	public double getBalance(String s) {
 		return e.getBalance(s);
+	}
+
+	public double getBalance(MCOfflinePlayer player) {
+		return super.getBalance(getPlayer(player));
 	}
 
 	@Override
@@ -84,6 +97,10 @@ public class EconomyWrapper extends AbstractEconomy {
 		return e.withdrawPlayer(s, v);
 	}
 
+	public EconomyResponse withdrawPlayer(MCOfflinePlayer player, double amount) {
+		return super.withdrawPlayer(getPlayer(player), amount);
+	}
+
 	@Override
 	public EconomyResponse withdrawPlayer(String s, String s1, double v) {
 		return e.withdrawPlayer(s, s1, v);
@@ -92,6 +109,10 @@ public class EconomyWrapper extends AbstractEconomy {
 	@Override
 	public EconomyResponse depositPlayer(String s, double v) {
 		return e.depositPlayer(s, v);
+	}
+
+	public EconomyResponse depositPlayer(MCOfflinePlayer player, double v) {
+		return e.depositPlayer(getPlayer(player), v);
 	}
 
 	@Override

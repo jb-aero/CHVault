@@ -1,5 +1,6 @@
-package com.zeoldcraft.chvault.functions;
+package io.github.jbaero.chvault.functions;
 
+import com.laytonsmith.abstraction.MCOfflinePlayer;
 import com.laytonsmith.annotations.api;
 import com.laytonsmith.core.CHVersion;
 import com.laytonsmith.core.Static;
@@ -11,8 +12,12 @@ import com.laytonsmith.core.environments.Environment;
 import com.laytonsmith.core.exceptions.ConfigRuntimeException;
 import com.laytonsmith.core.functions.AbstractFunction;
 import com.laytonsmith.core.functions.Exceptions.ExceptionType;
-import com.zeoldcraft.chvault.EconServer;
-import com.zeoldcraft.chvault.EconomyWrapper;
+import io.github.jbaero.chvault.EconServer;
+import io.github.jbaero.chvault.EconomyWrapper;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
 
 /**
  *
@@ -20,6 +25,7 @@ import com.zeoldcraft.chvault.EconomyWrapper;
 public class Economy {
 
 	private static EconomyWrapper economy;
+	private static HashMap<UUID, Account> accounts = new HashMap<>();
 
 	private static void CheckInstallation() throws ConfigRuntimeException {
 		boolean failure = true;
@@ -31,31 +37,66 @@ public class Economy {
 			failure = (economy == null) || !economy.isEnabled();
 		}
 		if (failure) {
-			throw new ConfigRuntimeException("You are attempting to use"
-					+ " an economy function, and your economy setup is not valid."
+			throw new ConfigRuntimeException("You are attempting to use an economy function,"
+					+ " and your economy setup is not valid."
 					+ " Please install Vault and an Economy plugin before attempting"
 					+ " to use any of the Economy functions.", ExceptionType.InvalidPluginException, Target.UNKNOWN);
+		}
+	}
+
+	private static Account GetAccount(String fname, Target t, Construct... args) {
+		String identifier = args[0].val();
+		UUID key;
+		MCOfflinePlayer found;
+		if (identifier.length() == 32 || identifier.length() == 36) {
+			key = Static.GetUUID(identifier, t);
+			found = Static.getServer().getPlayer(key);
+		} else {
+			found = Static.GetPlayer(identifier, t);
+			key = found.getUniqueID();
+		}
+		for (Map.Entry<UUID, Account> entry : accounts.entrySet()) {
+			if (entry.getKey().equals(key)) {
+				return entry.getValue();
+			}
+		}
+		if (found != null) {
+			Account acc = new Account(found);
+			accounts.put(key, acc);
+			return acc;
+		}
+		throw new ConfigRuntimeException(fname + " could not find account matching " + args[0].val(),
+				ExceptionType.PluginInternalException, t);
+	}
+
+	private static BankAccount GetBankAccount(String fname, Target tile, Construct... args) {
+		String bank_name = args[0].val();
+		BankAccount m = new BankAccount(bank_name);
+		if (m == null) {
+			throw new ConfigRuntimeException("Could not access a bank account by that name (" + args[0].val() + ")", ExceptionType.PluginInternalException, tile);
+		} else {
+			return m;
 		}
 	}
 
 	//Small abstraction layer around the economy plugin handler
 	private static class Account {
 
-		String name;
+		MCOfflinePlayer user;
 
-		private Account(String name) {
+		private Account(MCOfflinePlayer name) {
 			CheckInstallation();
-			this.name = name;
+			this.user = name;
 		}
 
 		private boolean SetBalance(double number) {
-			double current = economy.getBalance(name);
+			double current = economy.getBalance(user);
 			if (number < current) {
 				//Withdrawal
-				return economy.withdrawPlayer(name, current - number).transactionSuccess();
+				return economy.withdrawPlayer(user, current - number).transactionSuccess();
 			} else {
 				//Deposit
-				return economy.depositPlayer(name, number - current).transactionSuccess();
+				return economy.depositPlayer(user, number - current).transactionSuccess();
 			}
 		}
 
@@ -80,7 +121,7 @@ public class Economy {
 		}
 
 		private double balance() {
-			return economy.getBalance(name);
+			return economy.getBalance(user);
 		}
 
 	}
@@ -839,27 +880,6 @@ public class Economy {
 			}
 		}
 
-	}
-
-
-	private static Account GetAccount(String fname, Target tile, Construct... args) {
-		String name = args[0].val();
-		Account m = new Account(name);
-		if (m == null) {
-			throw new ConfigRuntimeException("Could not access an account by that name (" + args[0].val() + ")", ExceptionType.PluginInternalException, tile);
-		} else {
-			return m;
-		}
-	}
-
-	private static BankAccount GetBankAccount(String fname, Target tile, Construct... args) {
-		String bank_name = args[0].val();
-		BankAccount m = new BankAccount(bank_name);
-		if (m == null) {
-			throw new ConfigRuntimeException("Could not access a bank account by that name (" + args[0].val() + ")", ExceptionType.PluginInternalException, tile);
-		} else {
-			return m;
-		}
 	}
 
 }

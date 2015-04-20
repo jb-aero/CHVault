@@ -1,4 +1,4 @@
-package com.zeoldcraft.chvault;
+package io.github.jbaero.chvault;
 
 import com.laytonsmith.PureUtilities.SimpleVersion;
 import com.laytonsmith.PureUtilities.Version;

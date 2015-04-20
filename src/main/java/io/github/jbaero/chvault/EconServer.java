@@ -1,4 +1,4 @@
-package com.zeoldcraft.chvault;
+package io.github.jbaero.chvault;
 
 import com.laytonsmith.abstraction.Implementation;
 import net.milkbowl.vault.economy.Economy;
