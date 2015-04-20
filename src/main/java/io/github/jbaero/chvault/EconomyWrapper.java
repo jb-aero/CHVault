@@ -1,7 +1,8 @@
 package io.github.jbaero.chvault;
 
 import com.laytonsmith.abstraction.MCOfflinePlayer;
-import com.laytonsmith.abstraction.bukkit.BukkitMCOfflinePlayer;
+import com.laytonsmith.abstraction.MCPlayer;
+import com.laytonsmith.abstraction.bukkit.entities.BukkitMCPlayer;
 import net.milkbowl.vault.economy.AbstractEconomy;
 import net.milkbowl.vault.economy.Economy;
 import net.milkbowl.vault.economy.EconomyResponse;
@@ -19,7 +20,10 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	OfflinePlayer getPlayer(MCOfflinePlayer off) {
-		return (OfflinePlayer) ((BukkitMCOfflinePlayer) off).getHandle();
+		if (off instanceof MCPlayer) {
+			return (OfflinePlayer) ((BukkitMCPlayer) off).getHandle();
+		}
+		return (OfflinePlayer) off.getHandle();
 	}
 
 	@Override
