@@ -78,7 +78,7 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	public double getBalance(MCOfflinePlayer player) {
-		return super.getBalance(getPlayer(player));
+		return e.getBalance(getPlayer(player));
 	}
 
 	@Override
@@ -102,7 +102,7 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	public EconomyResponse withdrawPlayer(MCOfflinePlayer player, double amount) {
-		return super.withdrawPlayer(getPlayer(player), amount);
+		return e.withdrawPlayer(getPlayer(player), amount);
 	}
 
 	@Override

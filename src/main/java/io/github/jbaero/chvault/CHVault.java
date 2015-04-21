@@ -8,7 +8,7 @@ public class CHVault extends AbstractExtension {
 
 	@Override
 	public Version getVersion() {
-		return new SimpleVersion(1, 1, 0);
+		return new SimpleVersion(1, 1, 1);
 	}
 
 	@Override
