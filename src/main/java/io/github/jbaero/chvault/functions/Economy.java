@@ -50,9 +50,9 @@ public class Economy {
 		MCOfflinePlayer found;
 		if (identifier.length() == 32 || identifier.length() == 36) {
 			key = Static.GetUUID(identifier, t);
-			found = Static.getServer().getPlayer(key);
+			found = Static.getServer().getOfflinePlayer(key);
 		} else {
-			found = Static.GetPlayer(identifier, t);
+			found = Static.GetUser(identifier, t);
 			key = found.getUniqueID();
 		}
 		for (Map.Entry<UUID, Account> entry : accounts.entrySet()) {
