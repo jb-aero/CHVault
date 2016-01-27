@@ -1,12 +1,15 @@
 # CHVault
 A [CommandHelper](https://github.com/sk89q/CommandHelper) extension providing access to Vault's API.
 
-Builds can be found at https://letsbuild.net/jenkins/job/CHVault/
+Download the correct version for your version of CommandHelper:
+<br>[CH 3.3.1-Snapshot](https://letsbuild.net/jenkins/job/CHVault/10/) (Old version)
+<br>[CH 3.3.1 (Release)](https://letsbuild.net/jenkins/job/CHVault/11/) (You probably want this one)
+<br>[CH 3.3.2-Snapshot](https://letsbuild.net/jenkins/job/CHVault/lastSuccessfulBuild/) (Dev builds)
 
 
 ## Functions
 ### Economy
-Provides functions to hook into the server's economy plugin. To use any of these functions, you must have one of the following economy plugins installed: iConomy 4,5,6, BOSEconomy 6 & 7, EssentialsEcon, 3Co, MultiCurrency, MineConomy, eWallet, EconXP, CurrencyCore, CraftConomy. In addition, you must download the [http://dev.bukkit.org/server-mods/vault/ Vault plugin]. Beyond this, there is no special setup to get the economy functions working, assuming they work for you in game using the plugin's default controls. Bank controls may not be supported in your particular plugin, check the details of that particular plugin.
+Provides functions to hook into the server's economy plugin. To use any of these functions, you must have one of the following economy plugins installed: iConomy 4,5,6, BOSEconomy 6 & 7, EssentialsEcon, 3Co, MultiCurrency, MineConomy, eWallet, EconXP, CurrencyCore, CraftConomy. In addition, you must download the [Vault plugin](http://dev.bukkit.org/server-mods/vault/). Beyond this, there is no special setup to get the economy functions working, assuming they work for you in game using the plugin's default controls. Bank controls may not be supported in your particular plugin, check the details of that particular plugin.
 
 #### void acc\_add(account\_name, to\_add):
 Adds an amount to the specified account

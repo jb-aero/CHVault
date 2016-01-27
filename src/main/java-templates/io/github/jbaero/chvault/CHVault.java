@@ -3,6 +3,10 @@ package io.github.jbaero.chvault;
 import com.laytonsmith.PureUtilities.SimpleVersion;
 import com.laytonsmith.PureUtilities.Version;
 import com.laytonsmith.core.CHVersion;
+import com.laytonsmith.core.exceptions.CRE.CRECastException;
+import com.laytonsmith.core.exceptions.CRE.CREInvalidPluginException;
+import com.laytonsmith.core.exceptions.CRE.CREPluginInternalException;
+import com.laytonsmith.core.exceptions.CRE.CREThrowable;
 import com.laytonsmith.core.extensions.AbstractExtension;
 import com.laytonsmith.core.extensions.MSExtension;
 import com.laytonsmith.core.functions.AbstractFunction;
@@ -34,7 +38,7 @@ public class CHVault extends AbstractExtension {
 
 		@Override
 		public Version since() {
-			return CHVersion.V3_3_1;
+			return CHVersion.V3_2_0;
 		}
 
 		@Override
@@ -45,6 +49,11 @@ public class CHVault extends AbstractExtension {
 		@Override
 		public boolean isRestricted() {
 			return true;
+		}
+
+		@Override
+		public Class<? extends CREThrowable>[] thrown() {
+			return new Class[]{CREPluginInternalException.class, CREInvalidPluginException.class, CRECastException.class};
 		}
 	}
 }
