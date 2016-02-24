@@ -8,6 +8,17 @@ Download the correct version for your version of CommandHelper:
 
 
 ## Functions
+### Permissions
+Uses Vault to extend the potential of permissions checking with group and multiworld support.
+
+#### boolean vault_has_permission(player, permission, [world])
+Checks the permission value of a player, optionally in a specific world.
+When used on an offline player, the accuracy depends on the permission plugin.
+
+#### array vault_pgroup(player, [world])
+Returns an array of groups that the player is in. When used on offline players,
+the accuracy of this function is dependent on the permissions plugin.
+
 ### Economy
 Provides functions to hook into the server's economy plugin. To use any of these functions, you must have one of the following economy plugins installed: iConomy 4,5,6, BOSEconomy 6 & 7, EssentialsEcon, 3Co, MultiCurrency, MineConomy, eWallet, EconXP, CurrencyCore, CraftConomy. In addition, you must download the [Vault plugin](http://dev.bukkit.org/server-mods/vault/). Beyond this, there is no special setup to get the economy functions working, assuming they work for you in game using the plugin's default controls. Bank controls may not be supported in your particular plugin, check the details of that particular plugin.
 
