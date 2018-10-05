@@ -93,6 +93,9 @@ public class Permissions {
 
 		@Override
 		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+			if (!getPerms(t).hasGroupSupport()) {
+				throw new CREInvalidPluginException("Your permissions plugin does not appear to support groups.", t);
+			}
 			CArray ret = new CArray(t);
 			MCOfflinePlayer offlinePlayer = Static.GetUser(args[0], t);
 			String world = null;

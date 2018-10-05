@@ -4,7 +4,7 @@
 
 	<groupId>io.github.jbaero</groupId>
 	<artifactId>CHVault</artifactId>
-	<version>2.1.0</version>
+	<version>2.1.1</version>
 	<packaging>jar</packaging>
 
 	<name>CHVault</name>
@@ -20,6 +20,19 @@
 					<source>1.7</source>
 					<target>1.7</target>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>templating-maven-plugin</artifactId>
+				<version>1.0-alpha-3</version>
+				<executions>
+					<execution>
+						<id>filter-src</id>
+						<goals>
+							<goal>filter-sources</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.bsc.maven</groupId>
@@ -62,19 +75,6 @@
 					</arguments>
 				</configuration>
 			</plugin>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>templating-maven-plugin</artifactId>
-				<version>1.0-alpha-3</version>
-				<executions>
-					<execution>
-						<id>filter-src</id>
-						<goals>
-							<goal>filter-sources</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 	<properties>
@@ -88,19 +88,19 @@
 		</repository>
 		<repository>
 			<id>vault-repo</id>
-			<url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
+			<url>http://nexus.hc.to/content/repositories/pub_releases</url>
 		</repository>
 	</repositories>
 	<dependencies>
 		<dependency>
 			<groupId>com.sk89q</groupId>
 			<artifactId>commandhelper</artifactId>
-			<version>3.3.2-SNAPSHOT</version>
+			<version>3.3.3-SNAPSHOT</version>
 		</dependency>
 		<dependency>
 			<groupId>net.milkbowl.vault</groupId>
 			<artifactId>VaultAPI</artifactId>
-			<version>1.5</version>
+			<version>1.7</version>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

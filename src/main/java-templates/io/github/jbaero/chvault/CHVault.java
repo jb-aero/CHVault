@@ -11,7 +11,7 @@ import com.laytonsmith.core.extensions.AbstractExtension;
 import com.laytonsmith.core.extensions.MSExtension;
 import com.laytonsmith.core.functions.AbstractFunction;
 
-@MSExtension("${project.name}")
+@MSExtension(CHVault.name)
 public class CHVault extends AbstractExtension {
 
 	@Override
@@ -21,13 +21,15 @@ public class CHVault extends AbstractExtension {
 
 	@Override
 	public void onStartup() {
-		System.out.println("${project.name} " + getVersion() + " loaded.");
+		System.out.println(name + " " + getVersion() + " loaded.");
 	}
 
 	@Override
 	public void onShutdown() {
-		System.out.println("${project.name} " + getVersion() + " unloaded.");
+		System.out.println(name + " " + getVersion() + " unloaded.");
 	}
+
+	public static final String name = "${project.name}";
 
 	public static abstract class jFunction extends AbstractFunction {
 
