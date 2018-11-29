@@ -3,11 +3,11 @@ package io.github.jbaero.chvault.functions;
 import com.laytonsmith.annotations.api;
 import com.laytonsmith.core.Static;
 import com.laytonsmith.core.constructs.CString;
-import com.laytonsmith.core.constructs.Construct;
 import com.laytonsmith.core.constructs.Target;
 import com.laytonsmith.core.environments.Environment;
 import com.laytonsmith.core.exceptions.CRE.CREPluginInternalException;
 import com.laytonsmith.core.exceptions.ConfigRuntimeException;
+import com.laytonsmith.core.natives.interfaces.Mixed;
 import io.github.jbaero.chvault.CHVault.jFunction;
 import net.milkbowl.vault.chat.Chat;
 import org.bukkit.Bukkit;
@@ -32,7 +32,7 @@ public class ChatFormatting {
 	@api
 	public static class vault_group_prefix extends jFunction {
 
-		public Construct exec(Target t, Environment environment, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment environment, Mixed... args) throws ConfigRuntimeException {
 			Static.checkPlugin("Vault", t);
 			return new CString(getChat(t).getGroupPrefix(args[0].val(), args[1].val()), t);
 		}
@@ -53,7 +53,7 @@ public class ChatFormatting {
 	@api
 	public static class vault_group_suffix extends jFunction {
 
-		public Construct exec(Target t, Environment environment, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment environment, Mixed... args) throws ConfigRuntimeException {
 			Static.checkPlugin("Vault", t);
 			return new CString(getChat(t).getGroupSuffix(args[0].val(), args[1].val()), t);
 		}
@@ -74,7 +74,7 @@ public class ChatFormatting {
 	@api
 	public static class vault_user_prefix extends jFunction {
 
-		public Construct exec(Target t, Environment environment, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment environment, Mixed... args) throws ConfigRuntimeException {
 			Static.checkPlugin("Vault", t);
 			return new CString(getChat(t).getPlayerPrefix(args[0].val(),
 					(OfflinePlayer) Static.GetUser(args[1], t).getHandle()), t);
@@ -96,7 +96,7 @@ public class ChatFormatting {
 	@api
 	public static class vault_user_suffix extends jFunction {
 
-		public Construct exec(Target t, Environment environment, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment environment, Mixed... args) throws ConfigRuntimeException {
 			Static.checkPlugin("Vault", t);
 			return new CString(getChat(t).getPlayerSuffix(args[0].val(),
 					(OfflinePlayer) Static.GetUser(args[1], t).getHandle()), t);
