@@ -2,7 +2,7 @@ package io.github.jbaero.chvault;
 
 import com.laytonsmith.PureUtilities.SimpleVersion;
 import com.laytonsmith.PureUtilities.Version;
-import com.laytonsmith.core.CHVersion;
+import com.laytonsmith.core.MSVersion;
 import com.laytonsmith.core.exceptions.CRE.CRECastException;
 import com.laytonsmith.core.exceptions.CRE.CREInvalidPluginException;
 import com.laytonsmith.core.exceptions.CRE.CREPluginInternalException;
@@ -40,7 +40,7 @@ public class CHVault extends AbstractExtension {
 
 		@Override
 		public Version since() {
-			return CHVersion.V3_2_0;
+			return MSVersion.V3_2_0;
 		}
 
 		@Override

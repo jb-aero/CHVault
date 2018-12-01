@@ -2,17 +2,17 @@ package io.github.jbaero.chvault.functions;
 
 import com.laytonsmith.abstraction.MCOfflinePlayer;
 import com.laytonsmith.annotations.api;
-import com.laytonsmith.core.CHVersion;
+import com.laytonsmith.core.MSVersion;
 import com.laytonsmith.core.Static;
 import com.laytonsmith.core.constructs.CDouble;
 import com.laytonsmith.core.constructs.CVoid;
-import com.laytonsmith.core.constructs.Construct;
 import com.laytonsmith.core.constructs.Target;
 import com.laytonsmith.core.environments.Environment;
 import com.laytonsmith.core.exceptions.CRE.CREInvalidPluginException;
 import com.laytonsmith.core.exceptions.CRE.CREPluginInternalException;
 import com.laytonsmith.core.exceptions.CRE.CREThrowable;
 import com.laytonsmith.core.exceptions.ConfigRuntimeException;
+import com.laytonsmith.core.natives.interfaces.Mixed;
 import io.github.jbaero.chvault.CHVault.jFunction;
 import io.github.jbaero.chvault.EconServer;
 import io.github.jbaero.chvault.EconomyWrapper;
@@ -46,7 +46,7 @@ public class Economy {
 		}
 	}
 
-	private static Account GetAccount(String fname, Target t, Construct... args) {
+	private static Account GetAccount(String fname, Target t, Mixed... args) {
 		String identifier = args[0].val();
 		UUID key;
 		MCOfflinePlayer found;
@@ -70,7 +70,7 @@ public class Economy {
 		throw new CREPluginInternalException(fname + " could not find account matching " + args[0].val(), t);
 	}
 
-	private static BankAccount GetBankAccount(String fname, Target tile, Construct... args) {
+	private static BankAccount GetBankAccount(String fname, Target tile, Mixed... args) {
 		String bank_name = args[0].val();
 		BankAccount m = new BankAccount(bank_name);
 		if (m == null) {
@@ -217,8 +217,8 @@ public class Economy {
 		}
 
 		@Override
-		public CHVersion since() {
-			return CHVersion.V3_2_0;
+		public MSVersion since() {
+			return MSVersion.V3_2_0;
 		}
 
 		@Override
@@ -227,7 +227,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			Account ma = GetAccount(this.getName(), t, args);
 			return new CDouble(ma.balance(), t);
 		}
@@ -253,7 +253,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetAccount(this.getName(), t, args).set(Static.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
@@ -283,7 +283,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetAccount(this.getName(), t, args).add(Static.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
@@ -313,7 +313,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetAccount(this.getName(), t, args).subtract(Static.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
@@ -344,7 +344,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetAccount(this.getName(), t, args).multiply(Static.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
@@ -374,7 +374,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetAccount(this.getName(), t, args).divide(Static.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
@@ -405,7 +405,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			throw new CREPluginInternalException("An error occured while trying to remove the player's account, due to"
 					+ " this operation being unsupported in Vault. If you want to see this feature supported, "
 					+ " contact the authors of Vault!", t);
@@ -437,7 +437,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			return new CDouble(GetBankAccount(this.getName(), t, args).balance(), t);
 		}
 
@@ -462,7 +462,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetBankAccount(this.getName(), t, args).set(Static.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
@@ -492,7 +492,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetBankAccount(this.getName(), t, args).add(Static.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
@@ -523,7 +523,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetBankAccount(this.getName(), t, args).subtract(Static.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
@@ -554,7 +554,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetBankAccount(this.getName(), t, args).multiply(Static.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
@@ -585,7 +585,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetBankAccount(this.getName(), t, args).divide(Static.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
@@ -621,7 +621,7 @@ public class Economy {
 		}
 
 		@Override
-		public Construct exec(Target t, Environment env, Construct... args) throws ConfigRuntimeException {
+		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
 			if (GetBankAccount(this.getName(), t, args).remove()) {
 				return CVoid.VOID;
 			} else {
