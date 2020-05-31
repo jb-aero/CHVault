@@ -9,6 +9,7 @@ import com.laytonsmith.core.constructs.CVoid;
 import com.laytonsmith.core.constructs.Target;
 import com.laytonsmith.core.environments.Environment;
 import com.laytonsmith.core.exceptions.CRE.CREInvalidPluginException;
+import com.laytonsmith.core.exceptions.CRE.CRENotFoundException;
 import com.laytonsmith.core.exceptions.CRE.CREPluginInternalException;
 import com.laytonsmith.core.exceptions.CRE.CREThrowable;
 import com.laytonsmith.core.exceptions.ConfigRuntimeException;
@@ -55,6 +56,9 @@ public class Economy {
 			found = Static.getServer().getOfflinePlayer(key);
 		} else {
 			found = Static.GetUser(identifier, t);
+			if(found == null) {
+				throw new CRENotFoundException(fname + " could not get the offline player: " + identifier, t);
+			}
 			key = found.getUniqueID();
 		}
 		for (Map.Entry<UUID, Account> entry : accounts.entrySet()) {
