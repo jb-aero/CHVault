@@ -88,7 +88,7 @@
 		</repository>
 		<repository>
 			<id>vault-repo</id>
-			<url>https://nexus.hc.to/content/repositories/pub_releases</url>
+			<url>https://jitpack.io</url>
 		</repository>
 	</repositories>
 	<dependencies>
