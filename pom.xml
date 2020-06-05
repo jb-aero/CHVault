@@ -87,8 +87,8 @@
 			<url>https://maven.enginehub.org/repo/</url>
 		</repository>
 		<repository>
-			<id>vault-repo</id>
-			<url>https://jitpack.io</url>
+			<id>spigot-repo</id>
+			<url>https://hub.spigotmc.org/nexus/content/groups/public/</url>
 		</repository>
 	</repositories>
 	<dependencies>
