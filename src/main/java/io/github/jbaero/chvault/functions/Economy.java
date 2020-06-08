@@ -2,6 +2,7 @@ package io.github.jbaero.chvault.functions;
 
 import com.laytonsmith.abstraction.MCOfflinePlayer;
 import com.laytonsmith.annotations.api;
+import com.laytonsmith.core.ArgumentValidation;
 import com.laytonsmith.core.MSVersion;
 import com.laytonsmith.core.Static;
 import com.laytonsmith.core.constructs.CDouble;
@@ -258,7 +259,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetAccount(this.getName(), t, args).set(Static.getNumber(args[1], t))) {
+			if (GetAccount(this.getName(), t, args).set(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException("An error occured when trying to set the balance on account "
@@ -288,7 +289,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetAccount(this.getName(), t, args).add(Static.getNumber(args[1], t))) {
+			if (GetAccount(this.getName(), t, args).add(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException("An error occured when trying to add to the balance on account "
@@ -318,7 +319,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetAccount(this.getName(), t, args).subtract(Static.getNumber(args[1], t))) {
+			if (GetAccount(this.getName(), t, args).subtract(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
@@ -349,7 +350,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetAccount(this.getName(), t, args).multiply(Static.getNumber(args[1], t))) {
+			if (GetAccount(this.getName(), t, args).multiply(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException("An error occured when trying to multiply the balance on account "
@@ -379,7 +380,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetAccount(this.getName(), t, args).divide(Static.getNumber(args[1], t))) {
+			if (GetAccount(this.getName(), t, args).divide(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException("An error occured when trying to divide the balance on account "
@@ -467,7 +468,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).set(Static.getNumber(args[2], t))) {
+			if (GetBankAccount(this.getName(), t, args).set(ArgumentValidation.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException("An error occured when trying to set the balance on bank account "
@@ -497,7 +498,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).add(Static.getNumber(args[2], t))) {
+			if (GetBankAccount(this.getName(), t, args).add(ArgumentValidation.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
@@ -528,7 +529,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).subtract(Static.getNumber(args[2], t))) {
+			if (GetBankAccount(this.getName(), t, args).subtract(ArgumentValidation.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
@@ -559,7 +560,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).multiply(Static.getNumber(args[2], t))) {
+			if (GetBankAccount(this.getName(), t, args).multiply(ArgumentValidation.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
@@ -590,7 +591,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).divide(Static.getNumber(args[2], t))) {
+			if (GetBankAccount(this.getName(), t, args).divide(ArgumentValidation.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
