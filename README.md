@@ -51,9 +51,6 @@ Divides the account by the given amount
 #### void acc\_multiply(account\_name, to\_multiply):
 Multiplies the account balance by the given amount
 
-#### void acc\_remove(account\_name):
-Removes the specified account from the game - Currently unimplemented, due to lack of support in Vault. Calling this function will currently always throw an exception.
-
 #### void acc\_set(account\_name, value):
 Sets the account's balance to the given amount
 
