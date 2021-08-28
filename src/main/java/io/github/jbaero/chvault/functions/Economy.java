@@ -262,7 +262,7 @@ public class Economy {
 			if (GetAccount(this.getName(), t, args).set(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
-				throw new CREPluginInternalException("An error occured when trying to set the balance on account "
+				throw new CREPluginInternalException("An error occurred when trying to set the balance on account "
 						+ args[0].val(), t);
 			}
 		}
@@ -292,7 +292,7 @@ public class Economy {
 			if (GetAccount(this.getName(), t, args).add(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
-				throw new CREPluginInternalException("An error occured when trying to add to the balance on account "
+				throw new CREPluginInternalException("An error occurred when trying to add to the balance on account "
 						+ args[0].val(), t);
 			}
 		}
@@ -323,7 +323,7 @@ public class Economy {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
-						"An error occured when trying to subtract from the balance on account "
+						"An error occurred when trying to subtract from the balance on account "
 								+ args[0].val(), t);
 			}
 		}
@@ -353,7 +353,7 @@ public class Economy {
 			if (GetAccount(this.getName(), t, args).multiply(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
-				throw new CREPluginInternalException("An error occured when trying to multiply the balance on account "
+				throw new CREPluginInternalException("An error occurred when trying to multiply the balance on account "
 						+ args[0].val(), t);
 			}
 		}
@@ -383,42 +383,9 @@ public class Economy {
 			if (GetAccount(this.getName(), t, args).divide(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
-				throw new CREPluginInternalException("An error occured when trying to divide the balance on account "
+				throw new CREPluginInternalException("An error occurred when trying to divide the balance on account "
 						+ args[0].val(), t);
 			}
-		}
-
-	}
-
-	@api
-	public static class acc_remove extends jFunction {
-
-		@Override
-		public String getName() {
-			return "acc_remove";
-		}
-
-		@Override
-		public Integer[] numArgs() {
-			return new Integer[]{1};
-		}
-
-		@Override
-		public String docs() {
-			return "void {account_name} Removes the specified account from the game - Currently unimplemented, due to lack of support in Vault. Calling"
-					+ " this function will currently always throw an exception.";
-		}
-
-		@Override
-		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			throw new CREPluginInternalException("An error occured while trying to remove the player's account, due to"
-					+ " this operation being unsupported in Vault. If you want to see this feature supported, "
-					+ " contact the authors of Vault!", t);
-//            if(GetAccount(this.getName(), t, args).remove()){
-//                return CVoid.VOID;
-//            } else {
-//                throw new ConfigRuntimeException("An error occured when trying to set the balance on account " + args[0].val(), ExceptionType.PluginInternalException, t);
-//            }
 		}
 
 	}
@@ -471,7 +438,7 @@ public class Economy {
 			if (GetBankAccount(this.getName(), t, args).set(ArgumentValidation.getNumber(args[2], t))) {
 				return CVoid.VOID;
 			} else {
-				throw new CREPluginInternalException("An error occured when trying to set the balance on bank account "
+				throw new CREPluginInternalException("An error occurred when trying to set the balance on bank account "
 						+ args[0].val() + ":" + args[1].val(), t);
 			}
 		}
@@ -502,7 +469,7 @@ public class Economy {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
-						"An error occured when trying to add to the balance on bank account "
+						"An error occurred when trying to add to the balance on bank account "
 								+ args[0].val() + ":" + args[1].val(), t);
 			}
 		}
@@ -533,7 +500,7 @@ public class Economy {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
-						"An error occured when trying to subtract from the balance on bank account "
+						"An error occurred when trying to subtract from the balance on bank account "
 								+ args[0].val() + ":" + args[1].val(), t);
 			}
 		}
@@ -564,7 +531,7 @@ public class Economy {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
-						"An error occured when trying to multiply the balance on bank account "
+						"An error occurred when trying to multiply the balance on bank account "
 								+ args[0].val() + ":" + args[1].val(), t);
 			}
 		}
@@ -595,7 +562,7 @@ public class Economy {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
-						"An error occured when trying to divide the balance on bank account "
+						"An error occurred when trying to divide the balance on bank account "
 								+ args[0].val() + ":" + args[1].val(), t);
 			}
 		}
@@ -630,7 +597,7 @@ public class Economy {
 			if (GetBankAccount(this.getName(), t, args).remove()) {
 				return CVoid.VOID;
 			} else {
-				throw new CREPluginInternalException("An error occured when trying to remove the bank account "
+				throw new CREPluginInternalException("An error occurred when trying to remove the bank account "
 						+ args[0].val() + ":" + args[1].val(), t);
 			}
 		}

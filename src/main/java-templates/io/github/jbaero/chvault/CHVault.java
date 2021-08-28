@@ -22,12 +22,12 @@ public class CHVault extends AbstractExtension {
 
 	@Override
 	public void onStartup() {
-		System.out.println(name + " " + getVersion() + " loaded.");
+		Static.getLogger().log(Level.INFO, name + " " + getVersion() + " loaded.");
 	}
 
 	@Override
 	public void onShutdown() {
-		System.out.println(name + " " + getVersion() + " unloaded.");
+		Static.getLogger().log(Level.INFO, name + " " + getVersion() + " unloaded.");
 	}
 
 	public static final String name = "${project.name}";
