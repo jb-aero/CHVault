@@ -3,6 +3,7 @@ package io.github.jbaero.chvault;
 import com.laytonsmith.PureUtilities.SimpleVersion;
 import com.laytonsmith.PureUtilities.Version;
 import com.laytonsmith.core.MSVersion;
+import com.laytonsmith.core.Static;
 import com.laytonsmith.core.exceptions.CRE.CRECastException;
 import com.laytonsmith.core.exceptions.CRE.CREInvalidPluginException;
 import com.laytonsmith.core.exceptions.CRE.CRENotFoundException;
@@ -11,6 +12,8 @@ import com.laytonsmith.core.exceptions.CRE.CREThrowable;
 import com.laytonsmith.core.extensions.AbstractExtension;
 import com.laytonsmith.core.extensions.MSExtension;
 import com.laytonsmith.core.functions.AbstractFunction;
+
+import java.util.logging.Level;
 
 @MSExtension(CHVault.name)
 public class CHVault extends AbstractExtension {
