@@ -62,13 +62,25 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	@Override
+	@Deprecated
 	public boolean hasAccount(String s) {
 		return e.hasAccount(s);
 	}
 
 	@Override
+	@Deprecated
 	public boolean hasAccount(String s, String s1) {
 		return e.hasAccount(s, s1);
+	}
+
+	@Override
+	public boolean hasAccount(OfflinePlayer op) {
+		return e.hasAccount(op);
+	}
+
+	@Override
+	public boolean hasAccount(OfflinePlayer op, String s1) {
+		return e.hasAccount(op, s1);
 	}
 
 	@Override
@@ -82,23 +94,47 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	@Override
+	@Deprecated
 	public double getBalance(String s, String s1) {
 		return e.getBalance(s, s1);
 	}
 
 	@Override
+	@Deprecated
 	public boolean has(String s, double v) {
 		return e.has(s, v);
 	}
 
 	@Override
+	@Deprecated
 	public boolean has(String s, String s1, double v) {
 		return e.has(s, s1, v);
 	}
 
 	@Override
+	@Deprecated
 	public EconomyResponse withdrawPlayer(String s, double v) {
 		return e.withdrawPlayer(s, v);
+	}
+
+	@Override
+	public double getBalance(OfflinePlayer op, String s1) {
+		return e.getBalance(op, s1);
+	}
+
+	@Override
+	public boolean has(OfflinePlayer op, double v) {
+		return e.has(op, v);
+	}
+
+	@Override
+	public boolean has(OfflinePlayer op, String s1, double v) {
+		return e.has(op, s1, v);
+	}
+
+	@Override
+	public EconomyResponse withdrawPlayer(OfflinePlayer op, double v) {
+		return e.withdrawPlayer(op, v);
 	}
 
 	public EconomyResponse withdrawPlayer(MCOfflinePlayer player, double amount) {
@@ -106,13 +142,25 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	@Override
+	@Deprecated
 	public EconomyResponse withdrawPlayer(String s, String s1, double v) {
 		return e.withdrawPlayer(s, s1, v);
 	}
 
 	@Override
+	@Deprecated
 	public EconomyResponse depositPlayer(String s, double v) {
 		return e.depositPlayer(s, v);
+	}
+
+	@Override
+	public EconomyResponse withdrawPlayer(OfflinePlayer op, String s1, double v) {
+		return e.withdrawPlayer(op, s1, v);
+	}
+
+	@Override
+	public EconomyResponse depositPlayer(OfflinePlayer op, double v) {
+		return e.depositPlayer(op, v);
 	}
 
 	public EconomyResponse depositPlayer(MCOfflinePlayer player, double v) {
@@ -120,13 +168,25 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	@Override
+	@Deprecated
 	public EconomyResponse depositPlayer(String s, String s1, double v) {
 		return e.depositPlayer(s, s1, v);
 	}
 
 	@Override
+	@Deprecated
 	public EconomyResponse createBank(String s, String s1) {
 		return e.createBank(s, s1);
+	}
+
+	@Override
+	public EconomyResponse depositPlayer(OfflinePlayer op, String s1, double v) {
+		return e.depositPlayer(op, s1, v);
+	}
+
+	@Override
+	public EconomyResponse createBank(String s, OfflinePlayer op) {
+		return e.createBank(s, op);
 	}
 
 	@Override
@@ -155,13 +215,25 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	@Override
+	@Deprecated
 	public EconomyResponse isBankOwner(String s, String s1) {
 		return e.isBankOwner(s, s1);
 	}
 
 	@Override
+	@Deprecated
 	public EconomyResponse isBankMember(String s, String s1) {
 		return e.isBankMember(s, s1);
+	}
+
+	@Override
+	public EconomyResponse isBankOwner(String s, OfflinePlayer op) {
+		return e.isBankOwner(s, op);
+	}
+
+	@Override
+	public EconomyResponse isBankMember(String s, OfflinePlayer op) {
+		return e.isBankMember(s, op);
 	}
 
 	@Override
@@ -170,12 +242,24 @@ public class EconomyWrapper extends AbstractEconomy {
 	}
 
 	@Override
+	@Deprecated
 	public boolean createPlayerAccount(String s) {
 		return e.createPlayerAccount(s);
 	}
 
 	@Override
+	@Deprecated
 	public boolean createPlayerAccount(String s, String s1) {
 		return e.createPlayerAccount(s, s1);
+	}
+
+	@Override
+	public boolean createPlayerAccount(OfflinePlayer op) {
+		return e.createPlayerAccount(op);
+	}
+
+	@Override
+	public boolean createPlayerAccount(OfflinePlayer op, String s1) {
+		return e.createPlayerAccount(op, s1);
 	}
 }
