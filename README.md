@@ -1,9 +1,10 @@
 # CHVault
-A [CommandHelper](https://github.com/sk89q/CommandHelper) extension providing access to Vault's API.
+A [CommandHelper](https://github.com/enginehub/CommandHelper) extension providing access to Vault's API.
 
-Download the correct version for your version of CommandHelper:
-<br>[CHVault 2.1.1](https://letsbuild.net/jenkins/job/CHVault/1/) (CommandHelper 3.3.1 - 3.3.3)
-<br>[CHVault 2.1.3](https://letsbuild.net/jenkins/job/CHVault/lastSuccessfulBuild/) (CommandHelper 3.3.4 - 3.3.5)
+Download the correct version for your version of CommandHelper:  
+CHVault 2.1.1 (CommandHelper 3.3.1 - 3.3.3)  
+CHVault 2.1.3 (CommandHelper 3.3.4 - 3.3.5)  
+CHVault 2.1.4 (CommandHelper 3.3.5)
 
 ## Functions
 ### Permissions
