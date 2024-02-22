@@ -3,7 +3,6 @@ package io.github.jbaero.chvault.functions;
 import com.laytonsmith.abstraction.MCOfflinePlayer;
 import com.laytonsmith.annotations.api;
 import com.laytonsmith.core.ArgumentValidation;
-import com.laytonsmith.core.MSVersion;
 import com.laytonsmith.core.Static;
 import com.laytonsmith.core.constructs.CDouble;
 import com.laytonsmith.core.constructs.CVoid;
@@ -23,13 +22,10 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-/**
- *
- */
 public class Economy {
 
 	private static EconomyWrapper economy;
-	private static HashMap<UUID, Account> accounts = new HashMap<>();
+	private final static HashMap<UUID, Account> accounts = new HashMap<>();
 
 	private static void CheckInstallation() throws ConfigRuntimeException {
 		boolean failure = true;
@@ -75,15 +71,8 @@ public class Economy {
 		throw new CREPluginInternalException(fname + " could not find account matching " + args[0].val(), t);
 	}
 
-	private static BankAccount GetBankAccount(String fname, Target tile, Mixed... args) {
-		String bank_name = args[0].val();
-		BankAccount m = new BankAccount(bank_name);
-		if (m == null) {
-			throw new CREPluginInternalException(
-					"Could not access a bank account by that name (" + args[0].val() + ")", tile);
-		} else {
-			return m;
-		}
+	private static BankAccount GetBankAccount(Mixed id) {
+		return new BankAccount(id.val());
 	}
 
 	//Small abstraction layer around the economy plugin handler
@@ -184,10 +173,9 @@ public class Economy {
 	}
 
 	public static String docs() {
-		return "Provides functions to hook into the server's economy plugin. To use any of these functions, you must have one of the"
-				+ " following economy plugins installed: iConomy 4,5,6, BOSEconomy 6 & 7, EssentialsEcon,"
-				+ " 3Co, MultiCurrency, MineConomy, eWallet, EconXP, CurrencyCore, CraftConomy."
-				+ " In addition, you must download the [http://dev.bukkit.org/server-mods/vault/ Vault plugin]. Beyond this,"
+		return "Provides functions to hook into the server's economy plugin. To use any of these functions,"
+				+ " you must have a Vault compatible economy plugin installed in addition to the"
+				+ " [https://github.com/MilkBowl/Vault Vault plugin]. Beyond this,"
 				+ " there is no special setup to get the economy functions working, assuming they work for you in game using"
 				+ " the plugin's default controls. Bank controls may not be supported in your particular"
 				+ " plugin, check the details of that particular plugin.";
@@ -209,26 +197,6 @@ public class Economy {
 		@Override
 		public String docs() {
 			return "double {account_name} Returns the balance of the given account name.";
-		}
-
-		@Override
-		public Class<? extends CREThrowable>[] thrown() {
-			return new Class[]{CREPluginInternalException.class, CREInvalidPluginException.class};
-		}
-
-		@Override
-		public boolean isRestricted() {
-			return true;
-		}
-
-		@Override
-		public MSVersion since() {
-			return MSVersion.V3_2_0;
-		}
-
-		@Override
-		public Boolean runAsync() {
-			return null;
 		}
 
 		@Override
@@ -400,7 +368,7 @@ public class Economy {
 
 		@Override
 		public Integer[] numArgs() {
-			return new Integer[]{2};
+			return new Integer[]{1};
 		}
 
 		@Override
@@ -410,7 +378,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			return new CDouble(GetBankAccount(this.getName(), t, args).balance(), t);
+			return new CDouble(GetBankAccount(args[0]).balance(), t);
 		}
 
 	}
@@ -425,7 +393,7 @@ public class Economy {
 
 		@Override
 		public Integer[] numArgs() {
-			return new Integer[]{3};
+			return new Integer[]{2};
 		}
 
 		@Override
@@ -435,7 +403,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).set(ArgumentValidation.getNumber(args[2], t))) {
+			if (GetBankAccount(args[0]).set(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException("An error occurred when trying to set the balance on bank account "
@@ -455,7 +423,7 @@ public class Economy {
 
 		@Override
 		public Integer[] numArgs() {
-			return new Integer[]{3};
+			return new Integer[]{2};
 		}
 
 		@Override
@@ -465,7 +433,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).add(ArgumentValidation.getNumber(args[2], t))) {
+			if (GetBankAccount(args[0]).add(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
@@ -486,7 +454,7 @@ public class Economy {
 
 		@Override
 		public Integer[] numArgs() {
-			return new Integer[]{3};
+			return new Integer[]{2};
 		}
 
 		@Override
@@ -496,7 +464,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).subtract(ArgumentValidation.getNumber(args[2], t))) {
+			if (GetBankAccount(args[0]).subtract(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
@@ -517,7 +485,7 @@ public class Economy {
 
 		@Override
 		public Integer[] numArgs() {
-			return new Integer[]{3};
+			return new Integer[]{2};
 		}
 
 		@Override
@@ -527,7 +495,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).multiply(ArgumentValidation.getNumber(args[2], t))) {
+			if (GetBankAccount(args[0]).multiply(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
@@ -548,7 +516,7 @@ public class Economy {
 
 		@Override
 		public Integer[] numArgs() {
-			return new Integer[]{3};
+			return new Integer[]{2};
 		}
 
 		@Override
@@ -558,7 +526,7 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).divide(ArgumentValidation.getNumber(args[2], t))) {
+			if (GetBankAccount(args[0]).divide(ArgumentValidation.getNumber(args[1], t))) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException(
@@ -579,7 +547,7 @@ public class Economy {
 
 		@Override
 		public Integer[] numArgs() {
-			return new Integer[]{2};
+			return new Integer[]{1};
 		}
 
 		@Override
@@ -594,11 +562,11 @@ public class Economy {
 
 		@Override
 		public Mixed exec(Target t, Environment env, Mixed... args) throws ConfigRuntimeException {
-			if (GetBankAccount(this.getName(), t, args).remove()) {
+			if (GetBankAccount(args[0]).remove()) {
 				return CVoid.VOID;
 			} else {
 				throw new CREPluginInternalException("An error occurred when trying to remove the bank account "
-						+ args[0].val() + ":" + args[1].val(), t);
+						+ args[0].val(), t);
 			}
 		}
 

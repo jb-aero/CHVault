@@ -32,11 +32,10 @@ Returns the prefix of user in world. Accuracy is plugin dependent if user is not
 Returns the suffix of user in world. Accuracy is plugin dependent if user is not online.
 
 ### Economy
-Provides functions to hook into the server's economy plugin. To use any of these functions,
-you must have one of the following economy plugins installed: iConomy 4,5,6, BOSEconomy 6 & 7, EssentialsEcon,
-3Co, MultiCurrency, MineConomy, eWallet, EconXP, CurrencyCore, CraftConomy. In addition, you must download the
-[Vault plugin](http://dev.bukkit.org/server-mods/vault/). Beyond this, there is no special setup to get the
-economy functions working, assuming they work for you in game using the plugin's default controls.
+Provides functions to hook into the server's economy plugin. To use any of these functions, you must
+have a Vault compatible economy plugin installed in addition to the [Vault plugin](https://github.com/MilkBowl/Vault).
+Beyond this, there is no special setup to get the economy functions working,
+assuming they work for you in game using the plugin's default controls.
 Bank controls may not be supported in your particular plugin, check the details of that particular plugin.
 
 #### void acc\_add(account\_name, to\_add):
